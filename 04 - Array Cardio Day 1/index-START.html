@@ -38,16 +38,54 @@
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
+let pre1500Filter = inventors.filter(item => {
+  return item.year > 1500 && item.year < 1600
+});
+
+
+
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+let firstLast = inventors.map(object => {
+  let filteredObj =`${object.first}, ${object.last}`;
+  //filteredObj.push(`${object.first}, ${object.last}`)
+  return filteredObj;
+
+});
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+let birthSort = inventors.sort((a, b) => {
+ return b.year - a.year
+});
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    let totalLived = inventors.reduce((previous, current) => {
+      let currentLived = current.passed - current.year;
+      let previousLived = previous.passed - previous.year;
+      let output =  previous + currentLived;
+      return output;
+      
+    }, 0)
+     // console.log(totalLived)
 
     // 5. Sort the inventors by years lived
+
+    let yearsLived = inventors.sort((a,b) => {
+      let aLived = a.passed - a.year;
+      let bLived = b.passed - b.year;
+      if (aLived > bLived) {
+        return -1;
+      }
+      else if (aLived < bLived) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    })
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -56,10 +94,21 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    let sortPeople = people.sort();
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+let initialObj = {};    
+dataCount = data.reduce((previous, current) => {
+if (!previous[current]) {
+  previous[current] = 0;
+}
+   previous[current] += 1;
+  return previous;
+},{} )
 
+console.log(dataCount)
   </script>
 </body>
 </html>
